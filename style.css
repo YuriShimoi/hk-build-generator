@@ -22,7 +22,13 @@ body {
   backdrop-filter: blur(1px);
 }
 
-#random-icon {
+.icon-list {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 10px;
+}
+.icon {
   width: 40px;
   height: 40px;
   filter: contrast(0) brightness(2) drop-shadow(0px 0px 3px white);
@@ -30,14 +36,17 @@ body {
   opacity: 0.6;
   transition: 80ms ease;
 }
-#random-icon:hover {
+.icon:hover {
   opacity: 1;
 }
 
 #charm-list {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   min-height: 100px;
-  margin-bottom: 30px;
+  max-width: 90%;
+  margin-bottom: 10px;
   gap: 20px;
 }
 
@@ -55,6 +64,78 @@ body {
   height: 100px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   filter: drop-shadow(2px 4px 6px black);
+  transform: translateY(20px);
+  opacity: 0;
+  animation: forwards 250ms ease popup;
+}
+
+#config {
+  margin-top: 20px;
+  margin-bottom: -60px;
+  height: 60px;
+  transition: opacity ease 40ms;
+}
+#config:not([visible]) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#config > span {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 25px;
+  gap: 5px;
+}
+#config > span > img {
+  height: 100%;
+  filter: drop-shadow(0px 1px 4px black);
+}
+#config > span > input {
+  width: 45px;
+  font-size: 18px;
+  height: 18px;
+  text-align: right;
+  background: none;
+  border: none;
+  color: inherit;
+  outline: none;
+}
+#config > span.dual {
+  flex-direction: row;
+  gap: 2px;
+  padding: 0;
+  cursor: pointer;
+}
+#config > span.dual img {
+  width: 50%;
+  aspect-ratio: 1 / 2;
+  object-fit: cover;
+  filter: none;
+  opacity: 0.2;
+  transition: opacity ease 30ms;
+}
+#config > span.dual img[active] {
+  opacity: 1;
+  filter: drop-shadow(0px 1px 4px black);
+}
+#config > span.dual img:first-child {
+  object-position: left;
+}
+#config > span.dual img:last-child {
+  object-position: right;
+}
+
+@keyframes popup {
+  from {
+  opacity: 0;
+  transform: translateY(20px);
+  }
+  to {
+  opacity: 1;
+  transform: translateY(0px);
+  }
 }

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HK Random Charm Build</title>
+    <title>Hollow Knight Charm Builder</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -15,77 +15,27 @@
         <span class="notch"></span>
         <span class="notch"></span>
       </div>
-      <img id="random-icon" src="img/icon_random.png" onclick="getRandom()">
+      <img src="img/line-ui.png" style="max-width: 100%">
+      <div class="icon-list">
+        <img class="icon" src="img/icon_random.png" onclick="getRandom()">
+        <img class="icon" src="img/icon_config.png" onclick="toggleConfigDiv()">
+      </div>
+      <div id="config" class="icon-list">
+        <span>
+          <img src="img/Charm_Notch.png">
+          <input id="notch-count" type="number" value="11" min="1" max="99">
+        </span>
+        <span class="dual" onclick="toggleConfigOption(this)" config="kingsoul">
+          <img src="img/Void Heart.png" active>
+          <img src="img/Kingsoul.png">
+        </span>
+        <span class="dual" onclick="toggleConfigOption(this)" config="grimmchild">
+          <img src="img/Grimmchild.png" active>
+          <img src="img/Carefree Melody.png">
+        </span>
+      </div>
     </div>
 
-    <script defer>
-      const $charm_list = document.getElementById('charm-list');
-
-      const charms = {
-        'Wayward Compass': 1,
-        'Gathering Swarm': 1,
-        'Stalwart Shell': 2,
-        'Soul Catcher': 2,
-        'Shaman Stone': 3,
-        'Soul Eater': 4,
-        'Dashmaster': 2,
-        'Sprintmaster': 1,
-        'Grubsong': 1,
-        'Grubberfly_s Elegy': 3,
-        'Unbreakable Heart': 2,
-        'Unbreakable Greed': 2,
-        'Unbreakable Strength': 3,
-        'Spell Twister': 2,
-        'Steady Body': 1,
-        'Heavy Blow': 2,
-        'Quick Slash': 3,
-        'Longnail': 2,
-        'Mark of Pride': 3,
-        'Fury of the Fallen': 2,
-        'Thorns of Agony': 1,
-        'Baldur Shell': 2,
-        'Flukenest': 3,
-        'Defender_s Crest': 1,
-        'Glowing Womb': 2,
-        'Quick Focus': 3,
-        'Deep Focus': 4,
-        'Lifeblood Heart': 2,
-        'Lifeblood Core': 3,
-        'Joni_s Blessing': 4,
-        'Hiveblood': 4,
-        'Spore Shroom': 1,
-        'Sharp Shadow': 2,
-        'Shape of Unn': 2,
-        'Nailmaster_s Glory': 1,
-        'Weaversong': 2,
-        'Dream Wielder': 1,
-        'Dreamshield': 3,
-        'Grimmchild': 2
-      }
-
-      function setCharm(charm) {
-        const notch = document.createElement('span');
-        notch.classList.add('charm');
-        notch.style.backgroundImage = `url('img/${charm}.png')`;
-        $charm_list.appendChild(notch);
-      }
-
-      function getRandom() {
-        $charm_list.innerHTML = '';
-        let slots = 11;
-        let selected = [];
-
-        while(slots > 0) {
-          let ch = Math.round(Math.random() * Object.keys(charms).length);
-          let charm = Object.keys(charms)[ch];
-
-          if(!selected.includes(ch) && charms[charm] <= slots) {
-            setCharm(charm);
-            slots -= charms[charm];
-            selected.push(ch);
-          }
-        }
-      }
-    </script>
+    <script src="script.js" defer></script>
   </body>
 </html>
